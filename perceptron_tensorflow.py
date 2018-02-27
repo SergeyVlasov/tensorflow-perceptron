@@ -47,8 +47,9 @@ init = tf.global_variables_initializer()
 
 with tf.Session() as session:
     session.run(init)
-
-    #print(session.run(W1))
+     
+    #weights before training    
+    #print(session.run(Weights_inp_to_hid))
 
     for step in range(epoch):
         session.run(optimizer, feed_dict={X: train_inp_data, Y: label_train})
@@ -63,5 +64,6 @@ with tf.Session() as session:
     print("Accuracy:", accuracy.eval({X: train_inp_data, Y: label_train}))
 
     print(session.run([out], feed_dict = {X: x_example}))
-
-    #print(session.run(W1))
+    
+    #weights after training 
+    #print(session.run(Weights_inp_to_hid))
