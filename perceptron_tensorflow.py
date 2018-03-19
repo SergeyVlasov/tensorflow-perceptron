@@ -37,11 +37,11 @@ Weights_hid_to_out = tf.Variable(tf.random_uniform([n_hidden, n_output], -1.0, 1
 bias_hid = tf.Variable(tf.ones([n_hidden], name="Bias_hiden"))
 bias_out = tf.Variable(tf.ones([n_output], name="Bias_output"))
 
-L2 = tf.sigmoid(tf.matmul(X, Weights_inp_to_hid) + bias_hid)
-out = tf.sigmoid(tf.matmul(L2, Weights_hid_to_out) + bias_out)
+layer_hid = tf.sigmoid(tf.matmul(X, Weights_inp_to_hid) + bias_hid)
+out = tf.sigmoid(tf.matmul(layer_hid, Weights_hid_to_out) + bias_out)
 
-cost = tf.reduce_mean(-Y * tf.log(out) - (1 - Y) * tf.log(1 - out)) # croosentropy
-optimizer = tf.train.GradientDescentOptimizer(learning_rate).minimize(cost)
+cost_func = tf.losses.log_loss(Y, out) # croosentropy
+optimizer = tf.train.GradientDescentOptimizer(learning_rate).minimize(cost_func)
 
 init = tf.global_variables_initializer()
 
@@ -55,7 +55,7 @@ with tf.Session() as session:
         session.run(optimizer, feed_dict={X: train_inp_data, Y: label_train})
      # print cost
         if step % 1000 == 0:
-            print(session.run(cost, feed_dict={X: train_inp_data, Y: label_train}))
+            print(session.run(cost_func, feed_dict={X: train_inp_data, Y: label_train}))
 
     answer = tf.equal(tf.floor(out + 0.5), Y)
     accuracy = tf.reduce_mean(tf.cast(answer, "float"))
