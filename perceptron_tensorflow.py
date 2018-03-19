@@ -40,7 +40,9 @@ bias_out = tf.Variable(tf.ones([n_output], name="Bias_output"))
 layer_hid = tf.sigmoid(tf.matmul(X, Weights_inp_to_hid) + bias_hid)
 out = tf.sigmoid(tf.matmul(layer_hid, Weights_hid_to_out) + bias_out)
 
-cost_func = tf.losses.log_loss(Y, out) # croosentropy
+cost_func = tf.losses.log_loss(Y, out) # croosentropy  tf.reduce_mean(-Y * tf.log(hy) - (1 - Y) * tf.log(1 - hy))
+#cost_func = tf.losses.mean_squared_error  # other variant of cost
+
 optimizer = tf.train.GradientDescentOptimizer(learning_rate).minimize(cost_func)
 
 init = tf.global_variables_initializer()
