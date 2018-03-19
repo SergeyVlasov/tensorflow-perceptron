@@ -44,6 +44,10 @@ cost_func = tf.losses.log_loss(Y, out) # croosentropy  tf.reduce_mean(-Y * tf.lo
 #cost_func = tf.losses.mean_squared_error  # other variant of cost
 
 optimizer = tf.train.GradientDescentOptimizer(learning_rate).minimize(cost_func)
+''' other variant '''
+#optimizer = tf.train.adadeltaoptimizer(learning_rate).minimize(cost_func)
+#optimizer = tf.train.RMSPropOptimizer(self.lr).minimize(self.loss)
+
 
 init = tf.global_variables_initializer()
 
