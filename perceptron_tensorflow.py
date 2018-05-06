@@ -47,6 +47,8 @@ out = tf.sigmoid(tf.matmul(L2, Weights_hid_to_out) + bias_out)
 
 cost = tf.reduce_mean(-Y * tf.log(out) - (1 - Y) * tf.log(1 - out)) # croosentropy
 optimizer = tf.train.GradientDescentOptimizer(learning_rate).minimize(cost)
+#tf.train.AdamOptimizer(learning_rate).minimize(cost)
+#tf.train.GradientDescentOptimizer(learning_rate).minimize(cost)
 
 init = tf.global_variables_initializer()
 
