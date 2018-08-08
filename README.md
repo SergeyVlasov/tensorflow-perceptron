@@ -7,5 +7,5 @@ I suggest you to download numpy and tensorflow on this:
 
 https://www.lfd.uci.edu/~gohlke/pythonlibs/
 
-
+OR you can run this code in Google Colaboratory
 
