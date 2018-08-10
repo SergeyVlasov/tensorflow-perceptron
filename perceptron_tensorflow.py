@@ -1,7 +1,7 @@
 import tensorflow as tf
 import numpy as np
 
-''' learning example (убучающие примеры) '''
+''' learning example (обучающие примеры) '''
 
 train_inp_data = np.array([
     [0.1, 0.1, 0.1, 0.1, 0.1],       # normal mode
@@ -82,4 +82,5 @@ with tf.Session() as session:
 
     print(session.run([out], feed_dict = {X: x_example, probability_dropout: pb}))
 
+''' print weights '''
     #print(session.run(W1))
