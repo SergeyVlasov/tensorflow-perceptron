@@ -63,24 +63,24 @@ optimizer = tf.train.GradientDescentOptimizer(learning_rate).minimize(cost)
 
 init = tf.global_variables_initializer()
 
-with tf.Session() as session:
-    session.run(init)
+with tf.Session() as sess:
+    sess.run(init)
 
     #print(session.run(W1))
 
     for step in range(epoch):
-        session.run(optimizer, feed_dict={X: train_inp_data, Y: label_train, probability_dropout: pb})
+        sess.run(optimizer, feed_dict={X: train_inp_data, Y: label_train, probability_dropout: pb})
      # print cost:
         if step % 1000 == 0:
-            print(session.run(cost, feed_dict={X: train_inp_data, Y: label_train, probability_dropout: pb}))
+            print(sess.run(cost, feed_dict={X: train_inp_data, Y: label_train, probability_dropout: pb}))
 
     answer = tf.equal(tf.floor(out + 0.5), Y)
     accuracy = tf.reduce_mean(tf.cast(answer, "float"))
 
-    print(session.run([out], feed_dict={X: train_inp_data, Y: label_train, probability_dropout: pb}))
+    print(sess.run([out], feed_dict={X: train_inp_data, Y: label_train, probability_dropout: pb}))
     print("Accuracy:", accuracy.eval({X: train_inp_data, Y: label_train, probability_dropout: pb}))
 
-    print(session.run([out], feed_dict = {X: x_example, probability_dropout: pb}))
+    print(sess.run([out], feed_dict = {X: x_example, probability_dropout: pb}))
 
 ''' print weights '''
-    #print(session.run(W1))
+    #print(sess.run(W1))
