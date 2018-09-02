@@ -54,6 +54,7 @@ out = tf.sigmoid(tf.matmul(L2, Weights_hid_to_out) + bias_out)
 
 
 cost = tf.reduce_mean(-Y * tf.log(out) - (1 - Y) * tf.log(1 - out)) # croosentropy
+#loss = tf.losses.softmax_cross_entropy(onehot_labels=tf_y, logits=output)   
 optimizer = tf.train.GradientDescentOptimizer(learning_rate).minimize(cost)
 
 ''' other optimze methods '''
